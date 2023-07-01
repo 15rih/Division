@@ -1,1 +1,1 @@
-just a script / script(s)
+open source script(s)
