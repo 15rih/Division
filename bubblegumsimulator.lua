@@ -1,3 +1,5 @@
+repeat task.wait(0.001) until game:IsLoaded() and game.Players.LocalPlayer
+
 pcall(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/15rih/extensions/main/BannedUsers.lua"))()
 end)
@@ -143,6 +145,9 @@ local FarmingSection = FarmingTab:NewSection("Farming")
 
 FarmingSection:NewToggle("House Farm [Snowflakes]", "", function(state)
     if state then
+    	game:GetService("Workspace").CurrentCamera.CameraSubject = workspace.ChristmasMap.Part
+    	notify("House Snowflake Farm", "The snowflake farm is now on and working", 5)
+    	task.wait(0.4)
         loadstring(game:HttpGet("https://raw.githubusercontent.com/15rih/Random-Scripts/main/BubbleGumSim_SnowflakeAutofarm.lua", true))()
     else
         notify("Leaving game to turn off", "", 5)
