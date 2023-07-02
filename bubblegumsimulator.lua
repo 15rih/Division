@@ -46,9 +46,9 @@ MainSection:NewToggle("Auto Sell [spawn area]", "", function(state)
 end)
 
 local SelectedWorld
-MainSection:NewDropdown("Select World For Auto-Sell", "", {"Sell", "Candy Land", "Toy Wold", "Beach World", "Atlantis", "Rainbow Land", "Underworld", "Mystic Forest"}, function(World)
-    if World ~= nil then
-        local SelectedWorld = World
+MainSection:NewDropdown("Select World For Auto-Sell", "", {"Sell", "CandySell", "Toy World", "Beach World", "Atlantis", "Rainbow Land", "Underworld", "Mystic Forest"}, function(value)
+    if value ~= nil then
+        SelectedWorld = value
     end
 end)
 
@@ -57,7 +57,7 @@ MainSection:NewToggle("Auto Sell", "", function(state)
         getgenv().AutoSell = true
         while AutoSell == true do
             task.wait()
-            game:GetService("ReplicatedStorage").NetworkRemoteEvent:FireServer("SellBubble", tostring(SelectedWorld))
+            game:GetService("ReplicatedStorage").NetworkRemoteEvent:FireServer("SellBubble", SelectedWorld)
         end
     else
         getgenv().AutoSell = false
@@ -106,6 +106,9 @@ MiscSection:NewButton("Collect Group Rewards [MUST BE IN RS GROUP]", "", functio
     setclipboard("https://www.roblox.com/groups/3333298/Rumble-Studios#!/about")
 end)
 
+MiscSection:NewButton("Low GFX", "", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/15rih/extensions/main/LowGFX.lua", true))()
+end)
 
 local TeleportsTab = Window:NewTab("Teleports")
 local TeleportsSection = TeleportsTab:NewSection("Teleports")
@@ -154,6 +157,12 @@ FarmingSection:NewToggle("House Farm [Snowflakes]", "", function(state)
         wait(14)
         game:Shutdown()
     end
+end)
+
+FarmingSection:NewButton("Chest Gem Farm", "", function()
+    notify("Chest Gem Farm", "chest gem farm won't work if you don't have skylands&void unlocked", 5)
+    task.wait(2.5)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/15rih/extensions/main/ChestGemFarm.lua", true))()
 end)
 
 local CreditsTab = Window:NewTab("Credits")
