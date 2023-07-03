@@ -165,5 +165,36 @@ FarmingSection:NewButton("Chest Gem Farm", "", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/15rih/extensions/main/ChestGemFarm.lua", true))()
 end)
 
+FarmingSection:NewToggle("XP Farm", "", function(state)
+    if state then
+    	game:GetService("ReplicatedStorage").NetworkRemoteEvent:FireServer("TeleportToADoor", "XP Island")
+        task.wait(4)
+        game:GetService("ReplicatedStorage").NetworkRemoteEvent:FireServer("TeleportToCheckpoint", "XP Island")
+        
+        getgenv().xpfarm = true
+        while xpfarm == true do
+            task.wait(0.4)
+            for i,v in pairs(workspace.Pickups:GetChildren()) do
+                if v.Name == 'Part' then
+                    if (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 270 then
+                        local Tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(2, Enum.EasingStyle.Quad), {CFrame = v.CFrame})
+                        Tween:Play()
+                    end
+                end
+            end
+        end
+    else
+        getgenv().xpfarm = false
+        notify("XP Farm", "XP farm is now off!", 5) 
+    end
+end)
+
+local UISTab = Window:NewTab("UI-Settings")
+local UISSection = UISTab:NewSection("UI-Settings")
+
+UISSection:NewKeybind("Toggle GUI", "default keybind = v", Enum.KeyCode.V, function()
+	Library:ToggleUI()
+end)
+
 local CreditsTab = Window:NewTab("Credits")
 local CreditsSection = CreditsTab:NewSection("Made by fortunatesouls#8803 / 15rih#7746")
