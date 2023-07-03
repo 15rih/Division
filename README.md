@@ -1,4 +1,4 @@
-open source script(s)
+open source script(s) - soon more.
 
 **Bubble Gum Simulator Features:**
 
