@@ -5,7 +5,7 @@ pcall(function()
 end)
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Division", "DarkTheme")
+local Window = Library.CreateLib("Division", "Sentinel")
 
 local function notify(title,text,time)
     game.StarterGui:SetCore("SendNotification", {
@@ -93,7 +93,11 @@ MiscSection:NewToggle("Auto Trade Confirm", "", function(autotradeConfirm)
 end)
 
 MiscSection:NewButton("Spin To Win", "", function()
+    game:GetService("Workspace").CurrentCamera.CameraSubject = workspace.SpinToWin.Spinner
+    task.wait(1)
     game:GetService("ReplicatedStorage").NetworkRemoteEvent:FireServer("SpinToWin")
+    task.wait(5)
+    game:GetService("Workspace").CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character.HumanoidRootPart
 end)
 
 MiscSection:NewButton("Claim Daily Reward", "", function()
