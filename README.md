@@ -1,4 +1,4 @@
-open source script(s) - soon more.
+open source script(s) - soon more. --[[THIS IS BARELY UPDATED AND WILL BE DISCONTINUED SOON IONLY WORK ON THIS WHEN IM BORED]]--
 
 **Bubble Gum Simulator Features:**
 
